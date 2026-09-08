@@ -1,0 +1,357 @@
+:root {
+    /* Color Palette - Modern Dark Theme (Default) */
+    --bg-desktop: #1e1e28;
+    --bg-window: #252538;
+    --bg-window-header: #1f1f2e;
+    --bg-pane: #1b1b26;
+    --bg-pane-header: #212130;
+    --bg-editor: #161622;
+    --bg-input: #12121c;
+    --bg-hover: rgba(255, 255, 255, 0.06);
+    --bg-selected: #3d3b5c;
+    --bg-selected-text: #ffffff;
+    --bg-modal: #252538;
+    --bg-modal-backdrop: rgba(0, 0, 0, 0.65);
+
+    --border-color: #36364f;
+    --border-subtle: #2b2b3d;
+    --border-active: #5d59a6;
+
+    --text-primary: #e6e6f0;
+    --text-secondary: #a0a0b8;
+    --text-muted: #6e6e88;
+    --text-accent: #7c73e6;
+
+    --accent-color: #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-active: #4338ca;
+    --accent-glow: rgba(99, 102, 241, 0.25);
+
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+
+    /* Syntax Highlighting */
+    --st-comment: #768390;
+    --st-string: #9ece6a;
+    --st-character: #73daca;
+    --st-symbol: #ff9e64;
+    --st-number: #f7768e;
+    --st-keyword: #7aa2f7;
+    --st-binary-op: #bb9af7;
+    --st-assignment: #2ac3de;
+    --st-return: #e0af68;
+    --st-pseudo: #ff757f;
+    --st-class-name: #2ac3de;
+    --st-identifier: #c0caf5;
+    --st-block-arg: #e0af68;
+    --st-block-bracket: #7dcfff;
+    --st-paren: #89ddff;
+
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", "SFMono-Regular", Consolas, Menlo, Monaco, monospace;
+    --shadow-window: 0 16px 40px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-window-active: 0 20px 50px rgba(0, 0, 0, 0.55), 0 6px 16px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-active);
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+}
+
+[data-theme="light"] {
+    --bg-desktop: #e2e8f0;
+    --bg-window: #ffffff;
+    --bg-window-header: #f1f5f9;
+    --bg-pane: #f8fafc;
+    --bg-pane-header: #edf2f7;
+    --bg-editor: #ffffff;
+    --bg-input: #ffffff;
+    --bg-hover: rgba(0, 0, 0, 0.04);
+    --bg-selected: #e0e7ff;
+    --bg-selected-text: #1e1b4b;
+    --bg-modal: #ffffff;
+    --bg-modal-backdrop: rgba(15, 23, 42, 0.45);
+
+    --border-color: #cbd5e1;
+    --border-subtle: #e2e8f0;
+    --border-active: #6366f1;
+
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --text-accent: #4f46e5;
+
+    /* Light Theme Syntax Highlighting */
+    --st-comment: #64748b;
+    --st-string: #16a34a;
+    --st-character: #0d9488;
+    --st-symbol: #d97706;
+    --st-number: #dc2626;
+    --st-keyword: #2563eb;
+    --st-binary-op: #7c3aed;
+    --st-assignment: #0891b2;
+    --st-return: #b45309;
+    --st-pseudo: #db2777;
+    --st-class-name: #0284c7;
+    --st-identifier: #1e293b;
+    --st-block-arg: #b45309;
+    --st-block-bracket: #0284c7;
+    --st-paren: #475569;
+
+    --shadow-window: 0 16px 36px rgba(100, 116, 139, 0.25), 0 4px 10px rgba(100, 116, 139, 0.15);
+    --shadow-window-active: 0 20px 44px rgba(99, 102, 241, 0.2), 0 6px 14px rgba(100, 116, 139, 0.15), 0 0 0 1.5px var(--accent-color);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--text-primary);
+    background-color: var(--bg-desktop);
+    background-image: radial-gradient(var(--border-subtle) 1px, transparent 0);
+    background-size: 24px 24px;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Desktop App Shell */
+#desktop {
+    position: fixed;
+    top: 36px;
+    left: 0;
+    right: 0;
+    bottom: 36px;
+    width: 100vw;
+    height: calc(100vh - 72px);
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Top World Menu Bar */
+.world-menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: var(--bg-window-header);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    z-index: 10000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.menu-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    color: var(--text-primary);
+}
+
+.menu-brand svg {
+    color: var(--accent-color);
+}
+
+.brand-badge {
+    font-size: 10px;
+    font-weight: 600;
+    background: var(--accent-color);
+    color: #fff;
+    padding: 1px 6px;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.menu-nav-items {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.menu-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+}
+
+.menu-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-color);
+}
+
+.menu-btn.btn-accent {
+    background: var(--accent-color);
+    color: #fff;
+}
+.menu-btn.btn-accent:hover {
+    background: var(--accent-hover);
+}
+
+.menu-right-items {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.connection-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.indicator-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.connection-pill.online {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success-color);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.connection-pill.online .indicator-dot {
+    background: var(--success-color);
+    box-shadow: 0 0 6px var(--success-color);
+}
+
+.connection-pill.mock {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning-color);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.connection-pill.mock .indicator-dot {
+    background: var(--warning-color);
+}
+
+.connection-pill.offline {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger-color);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.connection-pill.offline .indicator-dot {
+    background: var(--danger-color);
+}
+
+/* Bottom Taskbar */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: var(--bg-window-header);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    z-index: 10000;
+}
+
+.taskbar-items {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    max-width: 80%;
+}
+
+.taskbar-item {
+    background: var(--bg-window);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.15s ease;
+}
+
+.taskbar-item:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.taskbar-item.active {
+    background: var(--bg-selected);
+    color: var(--bg-selected-text);
+    border-color: var(--border-active);
+    font-weight: 500;
+}
+
+.taskbar-status {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Drag and drop overlay */
+body.drag-over-active::after {
+    content: "Drop .st file to load into Smalltalk";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(99, 102, 241, 0.7);
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+}
